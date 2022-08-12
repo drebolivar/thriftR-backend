@@ -10,7 +10,6 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
     "password": "thrift_project_database_dev_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
