@@ -20,8 +20,8 @@ const createProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-    let updatedProfile = await Twerts.update({
-      where: { id: req.body },
+    let updatedProfile = await User.update(req.body, {
+      where: { id: req.params.user_id },
       returning: true
     })
     res.send(updatedProfile)
@@ -32,9 +32,7 @@ const updateProfile = async (req, res) => {
 
 const deleteProfile = async (req, res) => {
   try {
-    let userId = req.params
-    await Twerts.destroy({ where: { id: req.body } })
-    res.send(userId)
+    await User.destroy({ where: { id: req.params.user_id } })
   } catch (error) {
     throw error
   }
