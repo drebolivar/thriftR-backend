@@ -2,7 +2,7 @@ const { User } = require("../models");
 
 const GetProfiles = async (req, res) => {
   try {
-    const users = await User.findById(req.params);
+    const users = await User.findAll();
     res.send(users);
   } catch (error) {
     throw error;
@@ -20,7 +20,7 @@ const CreateProfile = async (req, res) => {
 
 const UpdateProfile = async (req, res) => {
   try {
-    let updatedProfile = await Twerts.update({
+    let updatedProfile = await User.update({
       where: { id: req.body },
       returning: true,
     });
@@ -33,7 +33,7 @@ const UpdateProfile = async (req, res) => {
 const DeleteProfile = async (req, res) => {
   try {
     let userId = req.params;
-    await Twerts.destroy({ where: { id: req.body } });
+    await User.destroy({ where: { id: req.body } });
     res.send(userId);
   } catch (error) {
     throw error;
