@@ -1,19 +1,21 @@
 {
   "development": {
+    "username": "root",
+    "password": null,
     "database": "thrift_project_database_dev",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "define": {
-      "underscored": true
-    }
+    "dialect": "postgres"
   },
   "test": {
-    "database": "thrift_project_database_test",
+    "username": "root",
+    "password": null,
+    "database": "thrift_project_database_dev_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "thrift_project_database_production",
+    "username": "root",
+    "password": "thrift_project_database_dev_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
