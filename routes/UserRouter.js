@@ -9,7 +9,7 @@ Router.delete("/:use_id", controller.DeleteProfile);
 module.exports = Router;
 =======
 Router.get('/:user_id', controller.getProfileByID)
-Router.post('/:user_id', controller.createProfile)
+Router.post('/', controller.createProfile)
 Router.put('/:user_id', controller.updateProfile)
 Router.delete('/:user_id', controller.deleteProfile)
 

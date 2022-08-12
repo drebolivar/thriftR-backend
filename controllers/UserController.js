@@ -2,13 +2,8 @@ const { User } = require('../models')
 
 const getProfileByID = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const users = await User.findAll();
-    res.send(users);
-=======
-    const users = await User.findByPk(req.params.user_id)
+  const users = await User.findByPk(req.params.user_id)
     res.send(users)
->>>>>>> 820c9b654e73f8be345bd13a6860161035a46687
   } catch (error) {
     throw error
   }
@@ -25,8 +20,8 @@ const createProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-    let updatedProfile = await User.update({
-      where: { id: req.body },
+   let updatedProfile = await User.update(req.body, {
+      where: { id: req.params.user_id },
       returning: true
     })
     res.send(updatedProfile)
@@ -37,15 +32,7 @@ const updateProfile = async (req, res) => {
 
 const deleteProfile = async (req, res) => {
   try {
-<<<<<<< HEAD
-    let userId = req.params;
-    await User.destroy({ where: { id: req.body } });
-    res.send(userId);
-=======
-    let userId = req.params
-    await Twerts.destroy({ where: { id: req.body } })
-    res.send(userId)
->>>>>>> 820c9b654e73f8be345bd13a6860161035a46687
+    await User.destroy({ where: { id: req.params.user_id } }
   } catch (error) {
     throw error
   }
