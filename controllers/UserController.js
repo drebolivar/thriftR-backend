@@ -2,7 +2,7 @@ const { User } = require('../models')
 
 const getProfileByID = async (req, res) => {
   try {
-  const users = await User.findByPk(req.params.user_id)
+    const users = await User.findByPk(req.params.user_id)
     res.send(users)
   } catch (error) {
     throw error
@@ -20,7 +20,7 @@ const createProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-   let updatedProfile = await User.update(req.body, {
+    let updatedProfile = await User.update(req.body, {
       where: { id: req.params.user_id },
       returning: true
     })
@@ -32,7 +32,7 @@ const updateProfile = async (req, res) => {
 
 const deleteProfile = async (req, res) => {
   try {
-    await User.destroy({ where: { id: req.params.user_id } }
+    await User.destroy({ where: { id: req.params.user_id } })
   } catch (error) {
     throw error
   }
