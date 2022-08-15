@@ -26,7 +26,7 @@ const Login = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    const { email, password, name } = req.body
+    const { email, password, username } = req.body
 
     let passwordDigest = await middleware.hashPassword(password)
 
