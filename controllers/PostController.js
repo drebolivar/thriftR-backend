@@ -14,7 +14,15 @@ const getAllPostsByUserId = async (req, res) => {
     const userPosts = await Post.findAll({
       where: {
         authorId: req.params.user_id
-      }
+      },
+      include: [
+        {
+          model: User
+        },
+        {
+          model: Comment
+        }
+      ]
     })
     res.send(userPosts)
   } catch (error) {
