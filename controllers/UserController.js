@@ -2,8 +2,8 @@ const { User } = require("../models");
 
 const getProfileByID = async (req, res) => {
   try {
-    const users = await User.findByPk(req.params.user_id);
-    res.send(users);
+    const users = await User.findByPk(req.params.user_id)
+    res.send(users)
   } catch (error) {
     throw error;
   }
@@ -32,7 +32,7 @@ const updateProfile = async (req, res) => {
 
 const deleteProfile = async (req, res) => {
   try {
-    await User.destroy({ where: { id: req.params.user_id } });
+    await User.destroy({ where: { id: req.params.user_id } })
   } catch (error) {
     throw error;
   }
