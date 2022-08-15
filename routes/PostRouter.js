@@ -1,6 +1,5 @@
 const Router = require('express').Router()
 const controller = require('../controllers/PostController')
-
 const middleware = require('../middleware')
 
 Router.get('/:post_id', controller.getPostsById)
