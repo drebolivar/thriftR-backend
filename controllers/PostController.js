@@ -9,6 +9,19 @@ const getPostsById = async (req, res) => {
   }
 }
 
+const getAllPostsByUserId = async (req, res) => {
+  try {
+    const userPosts = await Post.findAll({
+      where: {
+        authorId: req.params.user_id
+      }
+    })
+    res.send(userPosts)
+  } catch (error) {
+    throw error
+  }
+}
+
 const getAllPosts = async (req, res) => {
   try {
     let posts = await Post.findAll({
@@ -61,5 +74,6 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
-  getAllPosts
+  getAllPosts,
+  getAllPostsByUserId
 }
