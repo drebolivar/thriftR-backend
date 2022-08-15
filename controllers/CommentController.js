@@ -2,7 +2,7 @@ const { Comment } = require("../models");
 
 const GetComments = async (req, res) => {
   try {
-    const comments = await Comment.findAll();
+    const comments = await Comment.findByPk(req.params.comment_id);
     res.send(comments);
   } catch (error) {
     throw error;
@@ -10,8 +10,8 @@ const GetComments = async (req, res) => {
 };
 const CreateComment = async (req, res) => {
   try {
-    const createComment = await Comment.create({ ...req.body });
-    res.send(createComment);
+    let commentCreate = await Comment.create(req.body);
+    res.send(commentCreate);
   } catch (error) {
     throw error;
   }
@@ -19,11 +19,11 @@ const CreateComment = async (req, res) => {
 
 const UpdateComment = async (req, res) => {
   try {
-    const updateComment = await Comment.update(
-      { ...req.body },
-      { where: { id: req.params.comment_id } }
-    );
-    res.send(updateComment);
+    let commentUpdate = await Comment.update(req.body, {
+      where: { id: req.params.comment_id },
+      returning: true,
+    });
+    res.send(commentUpdate);
   } catch (error) {
     throw error;
   }
@@ -31,12 +31,7 @@ const UpdateComment = async (req, res) => {
 
 const DeleteComment = async (req, res) => {
   try {
-    await Commment.destroy({ where: { id: req.params.comment_id } });
-    res.send({
-      msg: "Post Deleted",
-      payload: req.params.comment_id,
-      status: "Ok",
-    });
+    await Comment.destroy({ where: { id: req.params.comment_id } });
   } catch (error) {
     throw error;
   }
