@@ -2,7 +2,11 @@ const { Comment, User, Post } = require('../models')
 
 const GetComments = async (req, res) => {
   try {
-    const comments = await Comment.findByPk(req.params.comment_id)
+    const comments = await Comment.findByPk(req.params.comment_id, {
+      include: {
+        model: User
+      }
+    })
     res.send(comments)
   } catch (error) {
     throw error
