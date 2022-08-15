@@ -1,51 +1,46 @@
 const { Post } = require("../models");
 
-const GetPosts = async (req, res) => {
+const getPostsById = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findByPk(req.params.post_id);
     res.send(posts);
   } catch (error) {
     throw error;
   }
 };
 
-const CreatePost = async (req, res) => {
+const createPost = async (req, res) => {
   try {
-    const createPost = await Post.create({ ...req.body });
-    res.send(createPost);
+    let postCreate = await Post.create(req.body);
+    res.send(postCreate);
   } catch (error) {
     throw error;
   }
 };
 
-const UpdatePost = async (req, res) => {
+const updatePost = async (req, res) => {
   try {
-    const updatePost = await Post.update(
-      { ...req.body },
-      { where: { id: req.params.post_id }}
-    );
-    res.send(updatePost);
+    let postUpdate = await Post.update(req.body, {
+      where: { id: req.params.post_id },
+      returning: true,
+    });
+    res.send(postUpdate);
   } catch (error) {
     throw error;
   }
 };
 
-const DeletePost = async (req, res) => {
+const deletePost = async (req, res) => {
   try {
     await Post.destroy({ where: { id: req.params.post_id } });
-    res.send({
-      msg: "Post Deleted",
-      payload: req.params.post_id,
-      status: "Ok",
-    });
   } catch (error) {
     throw error;
   }
 };
 
 module.exports = {
-  GetPosts,
-  CreatePost,
-  UpdatePost,
-  DeletePost,
+  getPostsById,
+  createPost,
+  updatePost,
+  deletePost,
 };

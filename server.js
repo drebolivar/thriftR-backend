@@ -13,3 +13,4 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => res.json({ message: 'thriftR Server Live' }))
 app.use('/', AppRouter)
 app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
+
