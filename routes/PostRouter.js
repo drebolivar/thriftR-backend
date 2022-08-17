@@ -11,6 +11,16 @@ Router.post(
   middleware.verifyToken,
   controller.createPost
 )
-Router.put('/:post_id', controller.updatePost)
-Router.delete('/:post_id', controller.deletePost)
+Router.put(
+  '/:post_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.updatePost
+)
+Router.delete(
+  '/:post_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.deletePost
+)
 module.exports = Router
