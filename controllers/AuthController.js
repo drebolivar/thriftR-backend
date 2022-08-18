@@ -46,7 +46,6 @@ const Register = async (req, res) => {
 const CheckSession = async (req, res) => {
   console.log('check session working')
   let { payload } = res.locals
-  //{ id: 7, email: 'alexcampo5@aol.com' }
   console.log(payload)
   res.send(payload)
 }
