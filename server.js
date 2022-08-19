@@ -11,11 +11,12 @@ const PORT = process.env.PORT || 3001
 const corsOptions = {
   origin: ['http://localhost:3000', 'localhost:3000'],
   methods: ['GET', 'POST', 'DELETE', 'PUT', 'UPDATE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'authorization'],
   preflightContinue: false,
   credentials: true
 }
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => res.json({ message: 'thriftR Server Live' }))
