@@ -9,7 +9,7 @@ const AuthRouter = require('./routes/AuthRouter')
 const PORT = process.env.PORT || 3001
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'localhost:3000'],
+  origin: '*',
   preflightContinue: false,
   credentials: true
 }
