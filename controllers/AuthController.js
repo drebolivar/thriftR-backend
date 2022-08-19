@@ -2,11 +2,13 @@ const { User } = require('../models')
 const middleware = require('../middleware')
 
 const Login = async (req, res) => {
+  //Checks if a user exists in the db
   try {
     const user = await User.findOne({
       where: { email: req.body.email },
       raw: true
     })
+    //checks that the passwords match then assigns payload
     if (
       user &&
       (await middleware.comparePassword(user.passwordDigest, req.body.password))
@@ -15,6 +17,7 @@ const Login = async (req, res) => {
         id: user.id,
         email: user.email
       }
+      //creates token and assigns payload
       let token = middleware.createToken(payload)
       return res.send({ user: payload, token })
     }
@@ -25,6 +28,7 @@ const Login = async (req, res) => {
 }
 
 const Register = async (req, res) => {
+  //submits register data and creates the passwordDigest
   try {
     const { email, password, username, profileImg } = req.body
 
