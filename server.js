@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001
 
 const corsOptions = {
   origin: ['http://localhost:3000', 'localhost:3000'],
+  preflightContinue: false,
   credentials: true
 }
 
