@@ -28,7 +28,7 @@ const Login = async (req, res) => {
 }
 
 const Register = async (req, res) => {
-  //submits register data and creates the passwordDigest
+  //submits register data, creates the passwordDigest, and posts the user
   try {
     const { email, password, username, profileImg } = req.body
 
@@ -47,8 +47,8 @@ const Register = async (req, res) => {
   }
 }
 
+//Checks to see if there is an active token in local storage, and if so sends the payload back to the front end
 const CheckSession = async (req, res) => {
-  console.log('check session working')
   let { payload } = res.locals
   console.log(payload)
   res.send(payload)

@@ -1,5 +1,6 @@
 const { Comment, User, Post } = require('../models')
 
+//gets a specific comment based on ID and includes the user
 const GetComments = async (req, res) => {
   try {
     const comments = await Comment.findByPk(req.params.comment_id, {
@@ -12,6 +13,8 @@ const GetComments = async (req, res) => {
     throw error
   }
 }
+
+//Creates a comment
 const CreateComment = async (req, res) => {
   try {
     let commentCreate = await Comment.create(req.body)
@@ -21,6 +24,7 @@ const CreateComment = async (req, res) => {
   }
 }
 
+//gets all comments
 const getAllComments = async (req, res) => {
   try {
     let comments = await Comment.findAll({
@@ -39,6 +43,8 @@ const getAllComments = async (req, res) => {
   }
 }
 
+//updates comment
+
 const UpdateComment = async (req, res) => {
   try {
     let commentUpdate = await Comment.update(req.body, {
@@ -51,6 +57,7 @@ const UpdateComment = async (req, res) => {
   }
 }
 
+//deletes comment
 const DeleteComment = async (req, res) => {
   try {
     await Comment.destroy({ where: { id: req.params.comment_id } })
