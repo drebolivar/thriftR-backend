@@ -8,7 +8,10 @@ const AuthRouter = require('./routes/AuthRouter')
 
 const PORT = process.env.PORT || 3001
 
-const corsOptions = { origin: ['http://localhost:3000'], credentials: true }
+const corsOptions = {
+  origin: ['http://localhost:3000', 'localhost:3000'],
+  credentials: true
+}
 
 app.use(cors(corsOptions))
 app.use(express.json())
