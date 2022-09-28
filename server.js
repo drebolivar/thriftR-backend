@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 3001
 
 //This sets the permissions for CORS and access to heroku backend. (This is the answer to the CORS blocking access to heroku error)
 const corsOptions = {
-  origin: ['http://localhost:3000', 'localhost:3000'],
+  origin: [
+    'http://localhost:3000',
+    'localhost:3000',
+    'https://thriftr-frontend.netlify.app',
+    'thriftr-frontend.netlify.app'
+  ],
   methods: ['GET', 'POST', 'DELETE', 'PUT', 'UPDATE'],
   preflightContinue: false,
   credentials: true
